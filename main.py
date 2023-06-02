@@ -22,7 +22,8 @@ pieces = {
     "wRook" : ["a1","b1"],
     "wBishop" : ["a2"],
     "wKnight" : ["f5"],
-    "wQueen" : ["a5"]
+    "wQueen" : ["a5"],
+    "wKing" : ["a3"]
 }
 
 def getPos(allPos, position):
@@ -604,6 +605,38 @@ def movegenKnight(pos):
                 result.append(i)
     return result
 
+def movegenKing(pos):
+    moves = []
+    result = []
+    alph = ["a","b","c","d","e","f","g","h"]
+    currentRow = pos[1:]
+    currentCol = pos[:1]
+
+    moves.append(vertical(pieces,pos,1))
+    moves.append(vertical(pieces,pos,-1))
+    moves.append(horizontal(pieces,pos,1))
+    moves.append(horizontal(pieces,pos,-1))
+    moves.append(diagonal(pieces,pos,1,"W"))
+    moves.append(diagonal(pieces,pos,-1,"W"))
+    moves.append(diagonal(pieces,pos,1,"E"))
+    moves.append(diagonal(pieces,pos,-1,"E"))
+
+    for i in moves: 
+        if(len(i) != 0):
+            result.append(i[0][0])
+
+        if(getPos(pieces,pos)[:1] == "w"):
+            if(len(i[1]) != 0):
+                if(getPos(pieces,i[1])[:1] == "b"):
+                    result.append(i[1])
+
+        elif(getPos(pieces,pos)[:1] == "b"):
+            if(len(i[1]) != 0):
+                if(getPos(pieces,i[1])[:1] == "w"):
+                    result.append(i[1])
+
+    return result
+
 def behavior(allPos,pos):
     targetunit = getPos(allPos,pos)[1:]
     
@@ -628,6 +661,9 @@ def behavior(allPos,pos):
 
         return result
 
+    if(targetunit == "King"):
+        return movegenKing(pos)
+            
 def WplayerMove(allPos):
     moveComplete = False
     validResponse = ["Pawn","Rook","Knight","Bishop","Queen","King"]
