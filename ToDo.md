@@ -8,3 +8,5 @@ NEW IDEA:
     - If a pawn makes it to the other side of the board, the game is won 
     - No need for King mechanics (check, checkmate, castling, behavior, promotion)
     
+BUGS:
+- Pawn cannot take diagonally? Extensive testing req. happened when White pawn on c4 could not take black pawn on d5 
