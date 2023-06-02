@@ -1,9 +1,10 @@
 TODO:
-- fix king movement on borders (bugs out with index errors)
-- King cannot move on threatened squares
-- Only King can move if in check 
-- Add promotion ft. to Pawns
-- Add point system on captures
-- Add checkmate and stalemate
-- Add castling
-- Add move tracker 
+- Add point tracking for controlling middle board
+- Add winconditions (points by end of 20 turns, pawn makes it to opposite side)
+
+NEW IDEA: 
+- Remove king, new mode of chess:
+    - 20 moves, whoever controls the middle of the board (c4 to f5) the longest wins 
+    - If a pawn makes it to the other side of the board, the game is won 
+    - No need for King mechanics (check, checkmate, castling, behavior, promotion)
+    
