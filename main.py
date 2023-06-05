@@ -18,13 +18,8 @@ pieces = {
 #testboard
 if False:
     pieces = {
-    "bPawn" : ["f3","d3","e2","a6"],
-    "wPawn" : ["b6"],
-    "wRook" : ["a1","b1"],
-    "wBishop" : ["a2"],
-    "wKnight" : ["f5"],
-    "wQueen" : ["a5"],
-    "wKing" : ["a3"]
+        "bPawn" : ["a7","b7","c7","d7","e7","f7","g7","h7","d5"],
+        "wPawn" : ["a2","b2","c2","d2","e2","f2","g2","h2","e4"]
     }
 
 def getPos(position):
@@ -36,7 +31,7 @@ def getPos(position):
 
     return ""
 
-def drawBoard(allPos):
+def drawBoard():
     row = [1,2,3,4,5,6,7,8]
     colmn = ["a","b","c","d","e","f","g","h"]
     board = [
@@ -393,14 +388,14 @@ def movegenPawn(pos):
             result.append(i)
 
         if(len(diagonal(pos,speed,"W")[1]) != 0):
-            for j in diagonal(pos,speed,"W")[1]:
-                if(getPos(j)[:1 == "b"]):
-                    result.append(diagonal(pos,speed,"W")[1])
+            target = diagonal(pos,speed,"W")[1]
+            if(getPos(target)[:1] == "b"):
+                result.append(target)
 
         if(len(diagonal(pos,speed,"E")[1]) != 0):
-            for j in diagonal(pos,speed,"E")[1]:
-                if(getPos(j)[:1 == "b"]):
-                    result.append(diagonal(pos,speed,"E")[1])
+            target = diagonal(pos,speed,"E")[1]
+            if(getPos(target)[:1] == "b"):
+                result.append(target)
 
     else:
         speed = -1
@@ -411,14 +406,14 @@ def movegenPawn(pos):
             result.append(i)
 
         if(len(diagonal(pos,speed,"W")[1]) != 0):
-            for j in diagonal(pos,speed,"W")[1]:
-                if(getPos(j)[:1 == "w"]):
-                    result.append(diagonal(pos,speed,"W")[1])
+            target = diagonal(pos,speed,"W")[1]
+            if(getPos(target)[:1] == "w"):
+                result.append(target)
 
         if(len(diagonal(pos,speed,"E")[1]) != 0):
-            for j in diagonal(pos,speed,"E")[1]:
-                if(getPos(j)[:1 == "w"]):
-                    result.append(diagonal(pos,speed,"E")[1])
+            target = diagonal(pos,speed,"E")[1]
+            if(getPos(target)[:1] == "w"):
+                result.append(target)
     
     return result
 
@@ -634,7 +629,7 @@ def WplayerMove():
     moveComplete = False
     validResponse = ["Pawn","Rook","Knight","Bishop","Queen"]
     targetPiece = ""
-    drawBoard(pieces)
+    drawBoard()
 
     while(True):
         print("\nWHITE MOVE:")
@@ -685,7 +680,7 @@ def BplayerMove():
     moveComplete = False
     validResponse = ["Pawn","Rook","Knight","Bishop","Queen"]
     targetPiece = ""
-    drawBoard(pieces)
+    drawBoard()
 
     while(True):
         print("\nBLACK MOVE:")
@@ -774,7 +769,7 @@ if __name__ == "__main__":
 
             WplayerMove()
             if(winCon()):
-                blackWin=True
+                whiteWin=True
                 break
 
             BplayerMove()
@@ -786,25 +781,25 @@ if __name__ == "__main__":
             print("====================================")
             print("WHITE: " + str(points[0]) + " | BLACK: " + str(points[1]))
 
-    if(whiteWin):
-        print("====================================")
-        print("           WHITE HAS WON            ")
-        print("====================================")
-    elif(blackWin):
-        print("====================================")
-        print("           BLACK HAS WON            ")
-        print("====================================")
-    else:
-        if(points[0] > points[1]):
+        if(whiteWin):
             print("====================================")
             print("           WHITE HAS WON            ")
             print("====================================")
-        elif(points[0] < points[1]):
+        elif(blackWin):
             print("====================================")
             print("           BLACK HAS WON            ")
             print("====================================")
         else:
-            print("====================================")
-            print("              STALEMATE             ")
-            print("====================================")
+            if(points[0] > points[1]):
+                print("====================================")
+                print("           WHITE HAS WON            ")
+                print("====================================")
+            elif(points[0] < points[1]):
+                print("====================================")
+                print("           BLACK HAS WON            ")
+                print("====================================")
+            else:
+                print("====================================")
+                print("              STALEMATE             ")
+                print("====================================")
     
