@@ -1,0 +1,2 @@
+Bugs:
+  - When pawn is on starting square; it can take diagonally take 2 paces ahead rather than 1 
