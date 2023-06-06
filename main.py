@@ -387,6 +387,7 @@ def movegenPawn(pos):
         for i in vertical(pos,speed)[0]:
             result.append(i)
 
+        speed = 1
         if(len(diagonal(pos,speed,"W")[1]) != 0):
             target = diagonal(pos,speed,"W")[1]
             if(getPos(target)[:1] == "b"):
@@ -405,6 +406,7 @@ def movegenPawn(pos):
         for i in vertical(pos,speed)[0]:
             result.append(i)
 
+        speed = -1
         if(len(diagonal(pos,speed,"W")[1]) != 0):
             target = diagonal(pos,speed,"W")[1]
             if(getPos(target)[:1] == "w"):
